@@ -1,0 +1,13 @@
+[package]
+name = "macos-rcvtos-fail"
+version = "0.1.0"
+authors = ["Dirkjan Ochtman <dirkjan@ochtman.nl>"]
+edition = "2018"
+
+[dependencies]
+libc = "0.2.79"
+mio = "0.6.22"
+
+[[bin]]
+name = "macos-rcvtos-fail"
+path = "main.rs"
