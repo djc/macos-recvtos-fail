@@ -5,7 +5,7 @@
 #include <sys/types.h>
 
 int main(int argc, char** argv) {
-    int sock = socket(PF_INET, SOCK_DGRAM, 0);
+    int sock = socket(AF_INET6, SOCK_DGRAM, 0);
     if (sock == -1) {
         printf("error %i", errno);
         return -1;
@@ -17,6 +17,14 @@ int main(int argc, char** argv) {
         printf("error %i", errno);
         return -1;
     }
+
+    libc::setsockopt(
+            io.as_raw_fd(),
+            libc::IPPROTO_IPV6,
+            libc::IPV6_RECVTCLASS,
+            &on as *const _ as _,
+            std::mem::size_of_val(&on) as _,
+        )
 
     printf("ok\n");
 }

@@ -1,7 +1,7 @@
 use std::os::unix::io::AsRawFd;
 
 fn main() {
-    let std = std::net::UdpSocket::bind("0.0.0.0:12345").unwrap();
+    let std = std::net::UdpSocket::bind("[::1]:12345").unwrap();
     let io = mio::net::UdpSocket::from_socket(std).unwrap();
     let addr = dbg!(io.local_addr().unwrap());
 
